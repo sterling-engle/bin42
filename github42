@@ -1,0 +1,16 @@
+#!/bin/sh
+if [ "$#" -ne 1 ]; then
+    echo "Illegal number of parameters"
+    echo $0 repository_name
+    echo For example: % $0 day_02 
+    exit 1
+fi
+cd
+git clone https://github.com/sterling-engle/$1.git $1
+cd $1
+git remote add 42$1 vogsphere@vgs.42.us.org:intra/2019/activities/piscine_c_$1/sengle
+git push 42$1 master
+cd
+git clone vogsphere@vgs.42.us.org:intra/2019/activities/piscine_c_$1/sengle verify-$1
+cd verify-$1
+ls -lR | tee 42-$1
