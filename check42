@@ -1,11 +1,21 @@
 #!/bin/sh
+#
+# check42 - Automatically checks 42 Silicon Valley Piscine projects by running Norminette and an automated test driver
+#
+# one-time set-up:
+#
+# replace "sterling-engle" in the "git clone" below with your GitHub user if you use it to store your project.
+# If using GitHub, name your project using day_## format so the script runs correctly.
+# % git clone https://github.com/mirror12k/42us-stupidity.git ~/42-checker
+# % export PATH=$PATH:~/bin/.
+# 
 if [ "$#" -ne 1 ]; then
-    echo "Illegal number of parameters"
+    echo "Illegal number of parameters!"
     echo $0 repository_name
-    echo For example: % $0 day_02 
+    echo for example: % $0 day_03 
     exit 1
 fi
-cd ~/42-stupid
+cd ~/42-checker
 git clone https://github.com/sterling-engle/$1.git $1 | tee clone.log
 mv clone.log $1/$1-check.log
 ./spawn.pl $1/ config_d$(echo $1 | sed -e "s/^.*_//").pl | tee -a $1/$1-check.log
