@@ -1,0 +1,14 @@
+#!/bin/sh
+if [ "$#" -ne 1 ]; then
+    echo "Illegal number of parameters"
+    echo $0 repository_name
+    echo For example: % $0 day_02 
+    exit 1
+fi
+cd ~/42-stupid
+git clone https://github.com/sterling-engle/$1.git $1 | tee clone.log
+mv clone.log $1/$1-check.log
+./spawn.pl $1/ config_d$(echo $1 | sed -e "s/^.*_//").pl | tee -a $1/$1-check.log
+./tools/build.sh | tee -a $1/$1-check.log
+./tools/verify.sh | tee -a $1/$1-check.log
+./tools/check_all.sh | tee -a $1/$1-check.log
