@@ -1,2 +1,2 @@
 # bin
-my local shell scripts and programs
+Useful shell scripts for 42 Silicon Valley Pisciners
