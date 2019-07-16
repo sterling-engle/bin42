@@ -1,13 +1,14 @@
 #!/bin/sh
 #
-# check42 - Automatically checks 42 Silicon Valley Piscine projects by running Norminette and an automated test driver
+# check42 - Automatically checks 42 Silicon Valley Piscine projects
+# 			by running Norminette and an automated test driver
 #
 # one-time set-up:
 #
-# replace "sterling-engle" in the "git clone" below with your GitHub user if you use it to store your project.
+# replace "sterling-engle" in "git clone" below with your GitHub user if using it to store your project.
 # If using GitHub, name your project using day_## format so the script runs correctly.
 # % git clone https://github.com/mirror12k/42us-stupidity.git ~/42-checker
-# % export PATH=$PATH:~/bin/.
+# % export PATH=$PATH:~/42bin/.
 # 
 if [ "$#" -ne 1 ]; then
     echo "Illegal number of parameters!"
