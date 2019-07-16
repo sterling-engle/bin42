@@ -5,8 +5,10 @@
 #
 # one-time set-up:
 #
-# replace "sterling-engle" in "git clone" below with your GitHub user if using it to store your project.
-# If using GitHub, name your project using day_## format so the script runs correctly.
+# replace "sterling-engle" in "git clone" below with your GitHub user if using
+# it to store your project.
+#
+# Name your GitHub project using day_## format so script runs correctly.
 # % git clone https://github.com/mirror12k/42us-stupidity.git ~/42-checker
 # % export PATH=$PATH:~/42bin/.
 # 
@@ -16,7 +18,9 @@ if [ "$#" -ne 1 ]; then
     echo for example: % $0 day_03 
     exit 1
 fi
+# add code to check for ~/42-checker and git clone 42-stupidity if not found
 cd ~/42-checker
+rm -fr ~/42-checker/$1 2> /dev/null
 git clone https://github.com/sterling-engle/$1.git $1 | tee clone.log
 mv clone.log $1/$1-check.log
 ./spawn.pl $1/ config_d$(echo $1 | sed -e "s/^.*_//").pl | tee -a $1/$1-check.log
