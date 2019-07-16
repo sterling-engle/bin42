@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# eval42 - Automatically evaluates 42 Silicon Valley Piscine projects by running Norminette and an automated test driver
+#
+# one-time set-up:
+#
+# replace "sterling-engle" in the "git clone" below with your GitHub user if you use it to store your project.
+# If using GitHub, name your project using day_## format so the script runs correctly.
+# % git clone https://github.com/mirror12k/42us-stupidity.git ~/42-checker
+# % export PATH=$PATH:~/bin/.
+# 
+if [ "$#" -ne 2 ]; then
+    echo "Illegal number of parameters!"
+    echo $0 login project
+    echo for example: % $0 sengle day_04
+    exit 1
+fi
+mkdir ~/42-evals 2> /dev/null
+cd ~/42-evals
+git clone vogsphere@vgs.42.us.org:intra/2019/activities/piscine_c_$2/$1 $2.$1 | tee clone.log
+mv clone.log $2.$1/eval.log
+./spawn.pl $2.$1/ config_d$(echo $2 | sed -e "s/^.*_//").pl | tee -a $2.$1/eval.log
+./tools/build.sh | tee -a $2.$1/eval.log
+./tools/verify.sh | tee -a $2.$1/eval.log
+./tools/check_all.sh | tee -a $2.$1/eval.log
